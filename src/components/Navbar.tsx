@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function Navbar() {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -12,13 +12,14 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-800 p-4 text-white">
+      {/* Navbar Container */}
       <div className="container mx-auto flex items-center justify-between">
-        {/* Title */}
+        {/* Title (Left Side) */}
         <Link href="/" className="text-xl font-bold">
           Last Fan Standing
         </Link>
 
-        {/* Burger Menu (Mobile) */}
+        {/* Burger Menu (Right Side) */}
         <button
           onClick={toggleMenu}
           className="focus:outline-none md:hidden"
@@ -56,11 +57,12 @@ export default function Navbar() {
 
       {/* Mobile Menu (Swipe-in from the side) */}
       <div
-        className={`fixed right-0 top-0 h-full w-64 transform bg-gray-800 transition-transform duration-300 ease-in-out ${
+        className={`fixed right-0 top-0 h-full w-48 transform bg-gray-800 transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-4">
+        {/* Close Button (Aligned to the right) */}
+        <div className="flex justify-end p-4">
           <button
             onClick={toggleMenu}
             className="text-white focus:outline-none"
@@ -81,19 +83,23 @@ export default function Navbar() {
               />
             </svg>
           </button>
-          <div className="mt-4">
-            <Link href="/" className="block py-2 hover:bg-gray-700">
-              Home
-            </Link>
-            <Link href="/about" className="block py-2 hover:bg-gray-700">
-              About
-            </Link>
-            <Link href="/contact" className="block py-2 hover:bg-gray-700">
-              Contact
-            </Link>
-          </div>
+        </div>
+
+        {/* Menu Links */}
+        <div className="p-4">
+          <Link href="/" className="block py-2 hover:bg-gray-700">
+            Home
+          </Link>
+          <Link href="/about" className="block py-2 hover:bg-gray-700">
+            About
+          </Link>
+          <Link href="/contact" className="block py-2 hover:bg-gray-700">
+            Contact
+          </Link>
         </div>
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;
